@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{%block section%}
+
+<h1> Lista Movimientos</h1>
+
+<table id="movements_table">
+    <thead> 
+        <tr>
+            <th>Date</th>
+            <th>Hora</th>
+            <th>Moneda_from</th>
+            <th>Cantidad_from</th>
+            <th>Moneda_to</th>
+            <th>cantidad_to</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for movements in data%}
+        <tr>
+            <td>{{movements.date}}</td>
+            <td>{{movements.hora}}</td>
+            <td>{{movements.Moneda_from}}</td>
+            <td>{{movements.Cantidad_from}}</td>
+            <td>{{movements.Moneda_to}}</td>
+            <td>{{movements.cantidad_to}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{%endblock%}

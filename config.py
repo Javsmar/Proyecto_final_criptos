@@ -1,1 +1,2 @@
 ORIGIN_DATA="data/criptos.sqlite"
+apikey = 'A4FD6ED1-60CE-46C2-AA2B-FEAA5F6F367C'

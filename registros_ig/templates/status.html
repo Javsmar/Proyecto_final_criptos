@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{%block section%}
+if 'calcular' in request.form:
+value_from_qr=float(request.form['from_q'])
+cambio=cambios
+valor_pu=value_from_qr / cambio
+
+list_request={
+    
+    "value_from":request.form['value_from'],
+    "from_q":request.form['from_q'],
+    "value_to":request.form['value_to'],
+    "to_q":str(cambios),
+    "value_pu":str(valor_pu)
+}
+
+{%endblock%}

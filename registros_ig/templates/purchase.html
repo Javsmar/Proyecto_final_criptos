@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{%block section%}
+
+<h2>Conversor Criptos</h2>
+<p>Escoje la moneda y la cantidad para realizar la conversión</p>
+
+<nav>
+    <ul>
+      <li><a href="#" id="btn_mas" role="button">+</a></li>
+    </ul>
+</nav>
+<article id="movements_details">
+    <form action="/purchase"  method="POST">
+       <div>
+            <label>From</label>
+            <select id="Moneda_from" name="value_from" value="{{form.value_from}}" required>
+                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
+                <option value="COP"{% if form.value_from=="COP"%}selected{% endif %}>COP</option>
+                <option value="ETH"{% if form.value_from=="ETH"%}selected{% endif %}>ETH</option>
+                <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
+                <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
+
+                <option value="DOT">DOT</option>
+            </select>
+            <label>Ingresa una cantidad</label>
+            <input type="number" name="from_q" value="{{form.from_q}}">
+    
+            <label>To</label>
+            <select id="Moneda_to" name="value_to" value="{{form.value_to}}">
+                <option value="EUR"{% if form.value_to=="EUR"%}selected{% endif %}>EUR</option>
+                <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
+                <option value="ETH"{% if form.value_to=="ETH"%}selected{% endif %}>ETH</option>
+                <option value="BNB"{% if form.value_to=="BNB"%}selected{% endif %}>BNB</option>
+                <option value="ADA"{% if form.value_to=="ADA"%}selected{% endif %}>ADA</option>
+                <option value="DOT"{% if form.value_to=="DOT"%}selected{% endif %}>DOT</option>
+            </select>
+            <label>cantidad to</label>
+            <input type"number" name="to_q" value="{{form.to_q}}">
+
+            <label for="">P.U</label>
+            <input type="number" name="value_pu" value="{{form.value_pu}}">
+
+            <div class="grid">
+                <input type="submit" id="cancelar" name="cancelar" value="cancelar">
+                <input type="submit" id="calcular" name="calcular" value="calcular">
+                <input type="submit" id="comprar" name="comprar" value="comprar">
+            </div>
+
+       </div> 
+    </form>   
+
+</article>
+
+
+{%endblock%}
+
+
+
+
+
+
+
