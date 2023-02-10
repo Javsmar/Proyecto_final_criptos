@@ -31,27 +31,17 @@ def select_all():
     
     return resultado
 
-
-
 def insert(registro):
     connetInsert=Conexion("insert into criptos(date,hora,Moneda_from,Cantidad_from,Moneda_to, cantidad_to) values(?,?,?,?,?,?)",registro)
-    
     connetInsert.con.commit()#funcion que registra finalmente
-    
     connetInsert.con.close()
     
     
-    
-    
-    
-    
-    
-def select_by(id):
-   
-    connetSelectBy = Conexion(f"SELECT id,date,hora,Moneda_from,Cantidad_from,Moneda_to, cantidad_to FROM criptos WHERE id={id}")
-    resultado=connetSelectBy.res.fetchall()
-    connetSelectBy.con.close()
-    return resultado[0]
+def invertido():
+    connetIvertido = Conexion("SELECT sum(Cantidad_from) FROM criptos WHERE Cantidad_from > 0 ")
+    resultado=connetIvertido.res.fetchall()
+    connetIvertido.con.close()
+    return resultado[0][0]
     
 
 def delete_by(id):    

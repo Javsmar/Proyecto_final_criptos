@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {%block section%}
-if 'calcular' in request.form:
-value_from_qr=float(request.form['from_q'])
-cambio=cambios
-valor_pu=value_from_qr / cambio
 
-list_request={
+<h1> Estado de la Inversión</h1>
+
+<article>
+    <p><strong>Invertido: </strong>{{adicion}}</p>
+    <p><strong>Recuperado: </strong></p>
+    <p><strong>Valor de la compra: </strong></p>
+    <p><strong>Valor actual: </strong></p>
+</article>
     
-    "value_from":request.form['value_from'],
-    "from_q":request.form['from_q'],
-    "value_to":request.form['value_to'],
-    "to_q":str(cambios),
-    "value_pu":str(valor_pu)
-}
+<div >
+    <input class="volver" type="submit" id="volver" name="volver" value="volver">
+</div>
 
 {%endblock%}

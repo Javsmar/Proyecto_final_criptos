@@ -1,50 +1,81 @@
 {% extends "base.html" %}
 {%block section%}
 
-<h2>Conversor Criptos</h2>
-<p>Escoje la moneda y la cantidad para realizar la conversión</p>
+<h2>Compra Venta y Tradeo de Criptos</h2>
+<p>Escoje la moneda y la cantidad para realizar la operación</p>
 
-<nav>
-    <ul>
-      <li><a href="#" id="btn_mas" role="button">+</a></li>
-    </ul>
-</nav>
 <article id="movements_details">
     <form action="/purchase"  method="POST">
        <div>
+        <div class="grid">
             <label>From</label>
             <select id="Moneda_from" name="value_from" value="{{form.value_from}}" required>
                 <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
-                <option value="COP"{% if form.value_from=="COP"%}selected{% endif %}>COP</option>
                 <option value="ETH"{% if form.value_from=="ETH"%}selected{% endif %}>ETH</option>
                 <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
                 <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
-
-                <option value="DOT">DOT</option>
+                <option value="DOT"{% if form.value_from=="DOT"%}selected{% endif %}>DOT</option>
             </select>
+
             <label>Ingresa una cantidad</label>
             <input type="number" name="from_q" value="{{form.from_q}}">
-    
+
+        </div>
+        <div class="grid">
             <label>To</label>
             <select id="Moneda_to" name="value_to" value="{{form.value_to}}">
-                <option value="EUR"{% if form.value_to=="EUR"%}selected{% endif %}>EUR</option>
                 <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
-                <option value="ETH"{% if form.value_to=="ETH"%}selected{% endif %}>ETH</option>
-                <option value="BNB"{% if form.value_to=="BNB"%}selected{% endif %}>BNB</option>
-                <option value="ADA"{% if form.value_to=="ADA"%}selected{% endif %}>ADA</option>
-                <option value="DOT"{% if form.value_to=="DOT"%}selected{% endif %}>DOT</option>
+                <option value="USDT"{% if form.value_to=="USDT"%}selected{% endif %}>USDT</option>
+                <option value="XRP"{% if form.value_to=="XRP"%}selected{% endif %}>XRP</option>
+                <option value="SOL"{% if form.value_to=="SOL"%}selected{% endif %}>SOL</option>
+                <option value="MATIC"{% if form.value_to=="MATIC"%}selected{% endif %}>MATIC</option>
             </select>
+
             <label>cantidad to</label>
             <input type"number" name="to_q" value="{{form.to_q}}">
+        </div>
 
+        <div class="grid">
+            <div>
+                <label>calcular</label>
+                <button type="submit" id="calcular" name="calcular" value="calcular">   
+                    <span class="material-symbols-outlined">
+                        calculate
+                    </span>
+                </button>
+            </div>
+            
+        </div>
+        
+       
+        <div class="grid">
             <label for="">P.U</label>
             <input type="number" name="value_pu" value="{{form.value_pu}}">
+        </div>
+        
+        <div class="grid">
 
-            <div class="grid">
-                <input type="submit" id="cancelar" name="cancelar" value="cancelar">
-                <input type="submit" id="calcular" name="calcular" value="calcular">
-                <input type="submit" id="comprar" name="comprar" value="comprar">
+            <div>
+                <label>Confirmar operación</label>
+                <button type="submit" id="comprar" name="comprar" value="comprar">
+                    <span class="material-symbols-outlined">
+                        done
+                    </span>
+                </button>
             </div>
+
+            <div>
+                <label>Cancelar operación</label>
+                <button type="submit" id="cancelar" name="cancelar" value="cancelar">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </button>
+            </div>
+           
+        </div>
+
+           
 
        </div> 
     </form>   

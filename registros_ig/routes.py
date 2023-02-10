@@ -1,20 +1,24 @@
 from registros_ig import app
-from flask  import jsonify, render_template,request,redirect
+from flask  import jsonify, render_template,request,redirect,flash
 from registros_ig.models import *
+from datetime import date
+from datetime import datetime
 
 
 @app.route("/")
 def index():
     registros=select_all()
-    
-    return render_template("index.html", pageTitle="Registro y movimientos de Criptomonedas",data=registros)
+   
+    return render_template("index.html", pageTitle="Registro y movimientos de Criptomonedas",data=registros, page='Inicio')
 
 
 
 @app.route("/purchase", methods=["GET","POST"])
 def calcular():
     if request.method=="GET":
-        return render_template("purchase.html", form={})
+        return render_template("purchase.html", form={}, page='Purchase')
+    
+    
     
     else:
         if 'calcular' in request.form:
@@ -33,23 +37,29 @@ def calcular():
             }
             return render_template("purchase.html",form=list_request)
 
+        date=(datetime.today().strftime('%Y-%m-%d'))
+        hora=(datetime.today().strftime('%H:%M'))
+        
         
         if 'comprar' in request.form:
             registros=select_all()
-            insert(["22023-02-06",
-                    "21:25",
+            insert([date,
+                    hora,
                     request.form['value_from'],
                     request.form['from_q'],
                     request.form['value_to'],
                     request.form['to_q']
             ])
             
-            
+            flash('Movimiento registrado correctamente')
             return redirect("/")
-            
-        
+        else:
+            flash('No hay Movimientos registrados') 
+            return redirect("/")
         
 
 @app.route("/status")
 def status():
-    return "aqui status"
+    if request.method == "GET":
+       
+        return render_template("status.html", adicion=invertido(), page='Status')

@@ -18,7 +18,7 @@ ul.errors{
 }
 
 ul.flashes{
-    color: rgb(233, 242, 239);
+    color: rgb(51, 158, 52);
     font-weight: bold;
     font-size: 0.8em;
 }
@@ -32,8 +32,14 @@ ul.flashes{
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
-  'wght' 400,
+  'wght' 800,
   'GRAD' 0,
   'opsz' 48
 }
+
+label, input{
+    font-size: 25px;
+    text-align: center;
+}
+
 
