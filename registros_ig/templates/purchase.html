@@ -15,6 +15,7 @@
                 <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
                 <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
                 <option value="DOT"{% if form.value_from=="DOT"%}selected{% endif %}>DOT</option>
+                <option value="BTC"{% if form.value_from=="DOT"%}selected{% endif %}>BTC</option>
             </select>
 
             <label>Ingresa una cantidad</label>
@@ -25,6 +26,7 @@
             <label>To</label>
             <select id="Moneda_to" name="value_to" value="{{form.value_to}}">
                 <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
+                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
                 <option value="USDT"{% if form.value_to=="USDT"%}selected{% endif %}>USDT</option>
                 <option value="XRP"{% if form.value_to=="XRP"%}selected{% endif %}>XRP</option>
                 <option value="SOL"{% if form.value_to=="SOL"%}selected{% endif %}>SOL</option>
@@ -57,7 +59,7 @@
 
             <div>
                 <label>Confirmar operación</label>
-                <button type="submit" id="comprar" name="comprar" value="comprar">
+                <button type="submit" id="operacion" name="operacion" value="operacion">
                     <span class="material-symbols-outlined">
                         done
                     </span>
@@ -75,10 +77,9 @@
            
         </div>
 
-           
+    </form>  
+   
 
-       </div> 
-    </form>   
 
 </article>
 

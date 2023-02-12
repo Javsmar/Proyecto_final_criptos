@@ -19,7 +19,6 @@ def calcular():
         return render_template("purchase.html", form={}, page='Purchase')
     
     
-    
     else:
         if 'calcular' in request.form:
             value_to=request.form['from_q']
@@ -37,29 +36,29 @@ def calcular():
             }
             return render_template("purchase.html",form=list_request)
 
-        date=(datetime.today().strftime('%Y-%m-%d'))
-        hora=(datetime.today().strftime('%H:%M'))
+    date=(datetime.today().strftime('%Y-%m-%d'))
+    hora=(datetime.today().strftime('%H:%M'))
+    
+    
+    if 'operacion' in request.form:
+        registros=select_all()
+        insert([date,
+                hora,
+                request.form['value_from'],
+                request.form['from_q'],
+                request.form['value_to'],
+                request.form['to_q']
+        ])
         
-        
-        if 'comprar' in request.form:
-            registros=select_all()
-            insert([date,
-                    hora,
-                    request.form['value_from'],
-                    request.form['from_q'],
-                    request.form['value_to'],
-                    request.form['to_q']
-            ])
-            
-            flash('Movimiento registrado correctamente')
-            return redirect("/")
-        else:
-            flash('No hay Movimientos registrados') 
-            return redirect("/")
+        flash('Movimiento registrado correctamente')
+        return redirect("/")
+    else:
+        flash('No hay Movimientos registrados') 
+        return redirect("/")
         
 
 @app.route("/status")
 def status():
     if request.method == "GET":
        
-        return render_template("status.html", adicion=invertido(), page='Status')
+        return render_template("status.html", adicion=invertido(), recovered=recuperado(), valorC=valorCompra(), page='Status')

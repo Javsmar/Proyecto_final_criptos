@@ -31,6 +31,13 @@ def select_all():
     
     return resultado
 
+def monedas_disponible():
+    connetMonedasdDisponibles = Conexion("SELECT Moneda_to FROM criptos")
+    resultado=connetMonedasdDisponibles.res.fetchall()
+    connetMonedasdDisponibles.con.close()
+    return resultado[0][0]
+
+
 def insert(registro):
     connetInsert=Conexion("insert into criptos(date,hora,Moneda_from,Cantidad_from,Moneda_to, cantidad_to) values(?,?,?,?,?,?)",registro)
     connetInsert.con.commit()#funcion que registra finalmente
@@ -42,6 +49,22 @@ def invertido():
     resultado=connetIvertido.res.fetchall()
     connetIvertido.con.close()
     return resultado[0][0]
+
+def recuperado():
+    connetRecuperado = Conexion("SELECT sum(Cantidad_to) FROM criptos WHERE Cantidad_to > 0 ")
+    resultado=connetRecuperado.res.fetchall()
+    connetRecuperado.con.close()
+    return resultado[0][0]
+
+
+def valorCompra():
+    gastado = invertido()
+    recobrado = recuperado()
+    valor_compra = gastado - recobrado
+    return valor_compra
+
+
+
     
 
 def delete_by(id):    
