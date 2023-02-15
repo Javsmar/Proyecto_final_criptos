@@ -9,7 +9,7 @@
        <div>
         <div class="grid">
             <label>From</label>
-            <select id="Moneda_from" name="value_from" value="{{form.value_from}}" required>
+            <select id="Moneda_from" name="value_from" value="{{form.value_from}}" >
                 <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
                 <option value="ETH"{% if form.value_from=="ETH"%}selected{% endif %}>ETH</option>
                 <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
@@ -30,15 +30,14 @@
         </div>
         <div class="grid">
             <label>To</label>
-            <select id="Moneda_to" name="value_to" value="{{form.value_to}}">
-                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
-                <option value="ETH"{% if form.value_from=="ETH"%}selected{% endif %}>ETH</option>
-                <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
-                <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
-                <option value="DOT"{% if form.value_from=="DOT"%}selected{% endif %}>DOT</option>
-                <option value="BTC"{% if form.value_from=="DOT"%}selected{% endif %}>BTC</option>
+            <select id="Moneda_to" name="value_to" value="{{form.value_to}}" required>
+                <option value="EUR"{% if form.value_to=="EUR"%}selected{% endif %}>EUR</option>
                 <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
-                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
+                <option value="BTC"{% if form.value_to=="BTC"%}selected{% endif %}>BTC</option>
+                <option value="ETH"{% if form.value_to=="ETH"%}selected{% endif %}>ETH</option>
+                <option value="BNB"{% if form.value_to=="BNB"%}selected{% endif %}>BNB</option>
+                <option value="ADA"{% if form.value_to=="ADA"%}selected{% endif %}>ADA</option>
+                <option value="DOT"{% if form.value_to=="DOT"%}selected{% endif %}>DOT</option>
                 <option value="USDT"{% if form.value_to=="USDT"%}selected{% endif %}>USDT</option>
                 <option value="XRP"{% if form.value_to=="XRP"%}selected{% endif %}>XRP</option>
                 <option value="SOL"{% if form.value_to=="SOL"%}selected{% endif %}>SOL</option>

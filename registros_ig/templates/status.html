@@ -37,3 +37,34 @@ errores=[]
                 errores.append("- No puedes operar la misma criptomoneda")
             else:
                 return render_template("purchase.html",msgError= errores[0], form=list_request)
+
+
+
+                errores=[]
+                recur=recuperado()
+                if request.form['value_from'] != "EUR":
+                    if float(request.form['from_q']) < float(recur) or float(request.form['from_q'])==False:
+                        errores.append("Fondos insuficientes o moneda equivocada") 
+                        
+                    
+                if request.form['value_from'] == request.form['value_to']:
+                    errores.append("No sepuede operar con la misma moneda")
+                    
+                if request.form['from_q'] <= "0":
+                    errores.append("solo puedes digitar camtidades mayores o iguales a 1")
+                    
+                if request.form['value_from'] == "BTC":
+                    errores.append("No se puede vender una moneda diferente a BTC a EUR")
+                    
+                else:
+                    cambio=cambios(value_from_qr,value_to_q)
+            
+                    valor_pu=float(value_to)*cambio
+                    
+                    list_request={
+                        "value_from":request.form['value_from'],
+                        "from_q":request.form['from_q'],
+                        "value_to":request.form['value_to'],
+                        "to_q":str(cambio),
+                        "value_pu":str(valor_pu)
+                    }  
