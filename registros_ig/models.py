@@ -6,7 +6,6 @@ from config import apikey
 def cambios(value_from, value_to):
     r=requests.get(f'http://rest.coinapi.io/v1/exchangerate/{value_from}/{value_to}?apikey={apikey}')
     resultado=r.json()
-  
     return resultado["rate"]
 
 
@@ -30,7 +29,7 @@ def select_all():
     connet.con.close()   
     
     return resultado
-
+    
 def monedas_disponible():
     connetMonedasdDisponibles = Conexion("SELECT Moneda_to FROM criptos")
     resultado=connetMonedasdDisponibles.res.fetchall()
@@ -60,9 +59,12 @@ def recuperado():
 def valorCompra():
     gastado = invertido()
     recobrado = recuperado()
-    valor_compra = gastado - recobrado
+    valor_compra = gastado - recobrado  
     return valor_compra
 
+
+def valorActual():
+     pass
 
 
     

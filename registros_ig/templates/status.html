@@ -15,3 +15,25 @@
 </div>
 
 {%endblock%}
+errores=[]
+        recur=recuperado()
+        if value_from_qr != "EUR":
+            if float(value_to) < float(recur) or float(value_to)==False:
+                errores.append("- Fondos insuficientes o moneda equivocada")  
+            
+            else:
+                return render_template("purchase.html",msgError= errores[0], form=list_request)
+
+
+            dispo=monedas_disponible()
+            if dispo != value_from_qr:
+                errores.append(" - No tiene disponible esta criptomoneda") 
+                
+            else:
+                return render_template("purchase.html",msgError= errores[0], form=list_request)    
+            
+            
+            if value_from_qr == value_to:
+                errores.append("- No puedes operar la misma criptomoneda")
+            else:
+                return render_template("purchase.html",msgError= errores[0], form=list_request)

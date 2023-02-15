@@ -16,6 +16,12 @@
                 <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
                 <option value="DOT"{% if form.value_from=="DOT"%}selected{% endif %}>DOT</option>
                 <option value="BTC"{% if form.value_from=="DOT"%}selected{% endif %}>BTC</option>
+                <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
+                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
+                <option value="USDT"{% if form.value_to=="USDT"%}selected{% endif %}>USDT</option>
+                <option value="XRP"{% if form.value_to=="XRP"%}selected{% endif %}>XRP</option>
+                <option value="SOL"{% if form.value_to=="SOL"%}selected{% endif %}>SOL</option>
+                <option value="MATIC"{% if form.value_to=="MATIC"%}selected{% endif %}>MATIC</option>
             </select>
 
             <label>Ingresa una cantidad</label>
@@ -25,6 +31,12 @@
         <div class="grid">
             <label>To</label>
             <select id="Moneda_to" name="value_to" value="{{form.value_to}}">
+                <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
+                <option value="ETH"{% if form.value_from=="ETH"%}selected{% endif %}>ETH</option>
+                <option value="BNB"{% if form.value_from=="BNB"%}selected{% endif %}>BNB</option>
+                <option value="ADA"{% if form.value_from=="ADA"%}selected{% endif %}>ADA</option>
+                <option value="DOT"{% if form.value_from=="DOT"%}selected{% endif %}>DOT</option>
+                <option value="BTC"{% if form.value_from=="DOT"%}selected{% endif %}>BTC</option>
                 <option value="COP"{% if form.value_to=="COP"%}selected{% endif %}>COP</option>
                 <option value="EUR"{% if form.value_from=="EUR"%}selected{% endif %}>EUR</option>
                 <option value="USDT"{% if form.value_to=="USDT"%}selected{% endif %}>USDT</option>
@@ -78,6 +90,11 @@
         </div>
 
     </form>  
+    <article>
+        {% for error in msgError %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </article>
    
 
 
