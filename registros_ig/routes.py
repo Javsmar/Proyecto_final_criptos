@@ -32,65 +32,66 @@ def calcular():
                 "value_pu":str(valor_pu)
             }
             return render_template("purchase.html",form=list_request)
-                
+
         date=(datetime.today().strftime('%Y-%m-%d'))
         hora=(datetime.today().strftime('%H:%M'))
-        value_to=request.form['from_q']
-        value_to_q = request.form['value_to']
-        value_from_qr=request.form['value_from']
-    
-        errores=[]
-        recur=recuperado()
-        
-        if 'operacion' in request.form :
+
+
+        if 'operacion' in request.form:
+            errores=[]
+            recur=recuperado()
             
+            value_to=request.form['from_q']
+            value_to_q = request.form['value_to']
+            value_from_qr=request.form['value_from']
+            cambio=cambios(value_from_qr,value_to_q)
+            valor_pu=float(value_to)*cambio
+            
+            list_request={
+                "value_from":request.form['value_from'],
+                "from_q":request.form['from_q'],
+                "value_to":request.form['value_to'],
+                "to_q":str(cambio),
+                "value_pu":str(valor_pu)
+            } 
+            
+    
             if request.form['value_from'] != "EUR":
-                if float(request.form['from_q']) < float(recur) or float(request.form['from_q'])==False:
-                    errores.append("Fondos insuficientes o moneda equivocada") 
+                errores.append("Moneda equivocada") 
+                return render_template("purchase.html", msgError=errores, form=list_request)
+            
+            if float(request.form['from_q']) > float(recur) or float(request.form['from_q'])==False:
+                errores.append("Fondos insuficientes ") 
+                return render_template("purchase.html", msgError=errores, form=list_request)
                     
             if request.form['value_from'] == request.form['value_to']:
                 errores.append("No sepuede operar con la misma moneda")
+                return render_template("purchase.html", msgError=errores, form=list_request)
                 
             if request.form['from_q'] <= "0":
-                errores.append("solo puedes digitar cantidades mayores o iguales a 1")
+                errores.append("solo puedes digitar cantidades mayores a 0 o iguales a 1")
+                return render_template("purchase.html", msgError=errores, form=list_request)
                 
             if request.form['value_from'] == "BTC":
                 errores.append("No se puede vender una moneda diferente a BTC a EUR")
-                   
-                   
-                cambio=cambios(value_from_qr,value_to_q)
-
-                valor_pu=float(value_to)*cambio
-                
-                list_request={
-                    "value_from":request.form['value_from'],
-                    "from_q":request.form['from_q'],
-                    "value_to":request.form['value_to'],
-                    "to_q":str(cambio),
-                    "value_pu":str(valor_pu)
-                }
-                    
-                insert([date,
-                        hora,
-                        request.form['value_from'],
-                        request.form['from_q'],
-                        request.form['value_to'],
-                        request.form['to_q']
-                ])
-                flash('No se puede registrar este movimiento') 
                 return render_template("purchase.html", msgError=errores, form=list_request)
-        
-            else: 
+
+            else:
+                
                 insert([date,
                         hora,
                         request.form['value_from'],
                         request.form['from_q'],
                         request.form['value_to'],
                         request.form['to_q']
-                ])
+                ])  
+                            
                 flash('Movimiento registrado correctamente')
                 return redirect("/")
 
+    
+    if 'cancelar' in request.form:
+         return redirect("/")
 
 @app.route("/status")
 def status():
